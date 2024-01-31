@@ -14,8 +14,7 @@ export const getData = async (url) => {
     const hash = await getHash(publicKey, privateKey, timestamp)
     const image_size = "/portrait_xlarge.jpg"
 
-   const response = await fetch(url  + new URLSearchParams({
-        name: 'Hulk',
+   const response = await fetch(url + "?" + new URLSearchParams({
         apikey: publicKey,
         ts: timestamp,
         hash: hash,
@@ -45,6 +44,3 @@ export const getData = async (url) => {
 export const getHash = async (publicKey, privateKey, timestamp) => {
     return createHash('md5').update(timestamp + privateKey + publicKey).digest("hex");
 }
-
-console.log(getData("https://gateway.marvel.com:443/v1/public/characters?").then((response) =>
-console.log("FILTERED VALUE : ", response)))
